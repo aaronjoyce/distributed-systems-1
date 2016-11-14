@@ -4,16 +4,23 @@ import sys
 from optparse import OptionParser
 
 parser = OptionParser()
-parser.add_option("--h", "--host", dest="HOST", 
-                  help="Specify the host to connect to; for example, localhost")
-parser.add_option("-p", "--port", dest="PORT",
-                  help="Specify the port to connect to")
-
-parser.add_option("-m", "--message", dest="MESSAGE",
-                  help="Specify the message to send to the echo server")
+parser.add_option('', '--host', dest='HOST', help='Specify the host to connect to; for example, localhost')
+parser.add_option('', '--port', dest='PORT', help='Specify the port to connect to', type=int)
+parser.add_option('', '--message', dest='MESSAGE', help='Specify the message to send to the echo server')
 
 
-options, args = parser.parse_args()
+(options, args) = parser.parse_args()
+
+if options.HOST is None:
+    options.HOST = raw_input('Enter host:')
+
+if options.PORT is None:
+    options.PORT = int(raw_input('Enter port:'))
+
+if options.MESSAGE is None:
+    options.MESSAGE = int(raw_input('Enter message:'))
+
+
 host = options.HOST
 port = int(options.PORT)
 message = options.MESSAGE
